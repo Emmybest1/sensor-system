@@ -1,0 +1,52 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es2021": true
+  },
+  "extends": ["plugin:react/recommended", "plugin:jest/recommended", "airbnb"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12
+  },
+  "plugins": ["react", "jest", "@typescript-eslint"],
+  "rules": {
+    "import/prefer-default-export": "off",
+    "import/no-unresolved": "off",
+    "import/extensions": ["off", "always", { "ignorePackages": true }],
+    "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+    "no-use-before-define": "off",
+    "max-len": ["error", { "code": 150, "tabWidth": 2 }],
+    "react/prop-types": "off",
+    "jsx-a11y/no-noninteractive-tabindex": "off",
+    "slint-disable object-curly-newline": "off",
+    "jsx-a11y/label-has-associated-control": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "comma-dangle": "off",
+    "import/no-extraneous-dependencies": "off",
+    "object-curly-newline": "off",
+    "react/react-in-jsx-scope": "off",
+    "no-confusing-arrow": "off",
+    "implicit-arrow-linebreak": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/destructuring-assignment": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/media-has-caption": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
+    "no-nested-ternary": "off",
+    "no-console": "off",
+    "no-unused-expressions": "off",
+    "no-shadow": "off",
+    "no-plusplus": "off",
+    "react/require-default-props": "off",
+    "jest/no-conditional-expect": "off",
+    "react/jsx-fragments": "off",
+    "no-underscore-dangle": "off",
+    "prefer-destructuring": "off",
+    "import/order": "off"
+  }
+}
