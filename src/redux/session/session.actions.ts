@@ -53,7 +53,7 @@ const signup = (data: LoginData, onSuccessDispatch?: Function, onErrorDispatch?:
   dispatch(action(types.LOG_IN_STARTED));
 
   $senTemApi
-    .login(`${process.env.REACT_APP_OPENDATA_DATABASE_URL}api/login`, data)
+    .login(`${process.env.REACT_APP_OPENDATA_DATABASE_URL}api/signup`, data)
     .then((response) => {
       const currentUser: CurrentUser = Object.assign({ permissions: [PAGES_PERMISSIONS] }, response) as unknown as CurrentUser;
 
