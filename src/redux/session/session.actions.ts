@@ -21,11 +21,11 @@ const login = (data: LoginData, onSuccessDispatch?: Function, onErrorDispatch?: 
   dispatch(action(types.LOG_IN_STARTED));
 
   $senTemApi
-    .login(`${process.env.REACT_APP_OPENDATA_DATABASE_URL}api/login`, data)
+    .login(`${process.env.REACT_APP_OPENDATA_DATABASE_URL}login`, data)
     .then((response) => {
-      const currentUser: CurrentUser = Object.assign({ permissions: [PAGES_PERMISSIONS] }, response) as unknown as CurrentUser;
+      const currentUser: CurrentUser = Object.assign({ date: new Date(), permissions: [PAGES_PERMISSIONS] }, response) as unknown as CurrentUser;
 
-      storeCurrentUser(Object.create(currentUser));
+      storeCurrentUser(currentUser);
 
       if (onSuccessDispatch) onSuccessDispatch();
 
@@ -43,21 +43,21 @@ const login = (data: LoginData, onSuccessDispatch?: Function, onErrorDispatch?: 
 /** *****
  *  signup actions creators
  */
-const signupSuccessful: ActionCreator<Action<string>> = (payload: User) => action(types.LOG_IN_SUCCESS, payload);
+const signupSuccessful: ActionCreator<Action<string>> = (payload: User) => action(types.SIGN_UP_SUCCESS, payload);
 
-const signupFailed: ActionCreator<Action<string>> = (payload: string) => action(types.LOG_IN_FAILURE, payload);
+const signupFailed: ActionCreator<Action<string>> = (payload: string) => action(types.SIGN_UP_FAILURE, payload);
 
-const resetSignupError: ActionCreator<Action<string>> = () => action(types.RESET_LOG_IN_FAILURE);
+const resetSignupError: ActionCreator<Action<string>> = () => action(types.RESET_SIGN_UP_FAILURE);
 
 const signup = (data: LoginData, onSuccessDispatch?: Function, onErrorDispatch?: Function) => (dispatch: (arg0: Action<string>) => void) => {
   dispatch(action(types.LOG_IN_STARTED));
 
   $senTemApi
-    .login(`${process.env.REACT_APP_OPENDATA_DATABASE_URL}api/signup`, data)
+    .signUp(`${process.env.REACT_APP_OPENDATA_DATABASE_URL}signup`, data)
     .then((response) => {
-      const currentUser: CurrentUser = Object.assign({ permissions: [PAGES_PERMISSIONS] }, response) as unknown as CurrentUser;
+      const currentUser: CurrentUser = Object.assign({ date: new Date(), permissions: [PAGES_PERMISSIONS] }, response) as unknown as CurrentUser;
 
-      storeCurrentUser(Object.create(currentUser));
+      storeCurrentUser(currentUser);
 
       if (onSuccessDispatch) onSuccessDispatch();
 

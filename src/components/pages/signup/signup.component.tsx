@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 import { Paths } from 'routes';
 import { useUniqueids } from 'hooks';
+import { signup } from 'redux/root.actions';
 import { Footer, Main } from 'components/layouts';
-import { Button, Input } from 'components/partials';
+import { selectSessionError } from 'redux/root.selectors';
+import { Button, Input, Error } from 'components/partials';
 
 const LoginWrapper = styled.div`
   width: 100%;
@@ -53,6 +56,11 @@ const DontHaveAccountNode = styled.p`
   font-size: 0.9rem;
 `;
 
+const ErrorWrapper = styled.div`
+  text-align: center;
+  width: 100%;
+`;
+
 interface SignUpData {
   email: string;
   password: string;
@@ -64,8 +72,10 @@ const initialSignUpData = {
 };
 
 const SignUp: React.FC = () => {
-  const [signUpData, setSignUpData] = useState<SignUpData>(initialSignUpData);
+  const dispatch = useDispatch();
   const [emailId, passwordId] = useUniqueids(2);
+  const error = useSelector(selectSessionError);
+  const [signUpData, setSignUpData] = useState<SignUpData>(initialSignUpData);
 
   return (
     <LoginWrapper>
@@ -76,7 +86,7 @@ const SignUp: React.FC = () => {
           onSubmit={(ev: React.KeyboardEvent<HTMLFormElement>) => {
             ev.preventDefault();
 
-            console.log(signUpData);
+            dispatch(signup(signUpData));
           }}
         >
           <Fieldset>
@@ -110,6 +120,13 @@ const SignUp: React.FC = () => {
           <Button type="submit" shape="radius">
             Sign up
           </Button>
+
+          {error && (
+            <ErrorWrapper>
+              <Error message={error} />
+            </ErrorWrapper>
+          )}
+
           <DontHaveAccountNode>
             Have an Account?&nbsp;
             <Link className="link" to={Paths.login}>
