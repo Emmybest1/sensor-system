@@ -16,11 +16,11 @@ const sessionReducer: Reducer<SessionState, SessionState | any> = (state = initi
     }
 
     case types.LOG_IN_SUCCESS: {
-      return { ...state, isLoading: false, error: null, user: action.payload };
+      return { ...state, isLoading: false, error: null, user: action.payload as User };
     }
 
     case types.LOG_IN_FAILURE: {
-      return { ...state, isLoading: false, error: action.payload };
+      return { ...state, isLoading: false, error: action.payload as string };
     }
 
     case types.RESET_LOG_IN_FAILURE: {
@@ -32,11 +32,11 @@ const sessionReducer: Reducer<SessionState, SessionState | any> = (state = initi
     }
 
     case types.SIGN_UP_SUCCESS: {
-      return { ...state, isLoading: false, error: null, user: action.payload };
+      return { ...state, isLoading: false, error: null, user: action.payload as User };
     }
 
     case types.SIGN_UP_FAILURE: {
-      return { ...state, isLoading: false, error: action.payload };
+      return { ...state, isLoading: false, error: action.payload as string };
     }
 
     case types.RESET_SIGN_UP_FAILURE: {
