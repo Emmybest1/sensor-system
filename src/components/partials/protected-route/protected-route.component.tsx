@@ -17,7 +17,15 @@ const ProtectedRoute: React.FC<ProtectedRoutePropTypes> = ({ pagePermissionNumbe
   const isAuthorized = checkIsUserAuthorizedToAccessPage(pagePermissionNumber, currentUser?.permissions);
 
   if (!isAuthorized) {
-    history.push({ pathname: Paths.fallback, state: { heading: 'Not Authorized', message: 'You are not authorized to access this page.' } });
+    history.push({
+      pathname: Paths.fallback,
+      state: {
+        heading: 'Not Authorized',
+        message: 'You are not authorized to access this page.',
+        shownButton: true,
+        fallbackPath: Paths.login,
+      },
+    });
     return null;
   }
 
