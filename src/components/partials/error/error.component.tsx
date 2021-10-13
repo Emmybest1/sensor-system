@@ -8,9 +8,11 @@ const ErrorNode = styled.div`
 `;
 
 type ErrorPropTypes = {
-  children: React.ReactNode;
+  message: string;
 };
 
-const Error: React.FC<ErrorPropTypes> = ({ children }) => <ErrorNode>{children}</ErrorNode>;
-
-export default Error;
+export const Error: React.FC<ErrorPropTypes> = ({ message }) => (
+  <ErrorNode aria-live="assertive" aria-atomic="true">
+    {message}
+  </ErrorNode>
+);
