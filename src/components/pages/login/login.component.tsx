@@ -8,8 +8,8 @@ import { LoginData } from 'api';
 import { useUniqueids } from 'hooks';
 import { login } from 'redux/root.actions';
 import { Footer, Main } from 'components/layouts';
+import { selectSessionError } from 'redux/root.selectors';
 import { Error, Button, Input } from 'components/partials';
-import { selectSessionIsLoading, selectSessionError } from 'redux/root.selectors';
 
 const LoginWrapper = styled.div`
   width: 100%;
@@ -71,10 +71,7 @@ const SignUp: React.FC = () => {
   const dispatch = useDispatch();
   const [emailId, passwordId] = useUniqueids(2);
   const error = useSelector(selectSessionError);
-  const isLoading = useSelector(selectSessionIsLoading);
   const [loginData, setLoginData] = useState<LoginData>(initialLoginData);
-
-  console.log(isLoading);
 
   return (
     <LoginWrapper>
