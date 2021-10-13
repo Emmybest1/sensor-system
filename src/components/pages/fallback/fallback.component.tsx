@@ -37,18 +37,23 @@ type FallbackPropTypes = {
   buttonNode?: HTMLButtonElement;
 };
 
+type LocationState = {
+  heading?: string;
+  message?: string;
+};
+
 const Fallback: React.FC<FallbackPropTypes> = ({ heading, message, buttonNode }) => {
-  const location = useLocation();
+  const location = useLocation<LocationState>();
 
   return (
     <FallbackWrapper className="page">
       <Main>
         <Head>
           <Logo />
-          <Heading>{heading}</Heading>
+          <Heading>{location.state.heading || heading}</Heading>
         </Head>
         <Body>
-          <Message>{message || `The requested URL "${location.pathname}" was not found on this server. `}</Message>
+          <Message>{location.state.message || message || `The requested URL "${location.pathname}" was not found on this server. `}</Message>
         </Body>
       </Main>
       {buttonNode && <Footer>{buttonNode}</Footer>}
