@@ -6,7 +6,7 @@ import { Paths } from 'routes';
 import { PAGES_PERMISSIONS, User } from './session';
 import { types } from './session.types';
 import { $senTemApi, LoginData } from 'api';
-import { CurrentUser, storeCurrentUser } from 'services';
+import { CurrentUser, removeCurrentUser, storeCurrentUser } from 'services';
 
 /** *****
  * login actions creators
@@ -78,4 +78,13 @@ const signup = (data: LoginData, onSuccessDispatch?: Function, onErrorDispatch?:
     });
 };
 
-export { login, resetLoginError, signup, resetSignupError };
+const logout: ActionCreator<Action<string>> = () => {
+  removeCurrentUser();
+
+  window.location.replace(Paths.login);
+  window.location.reload();
+
+  return action(types.SIGN_UP_SUCCESS);
+};
+
+export { login, resetLoginError, signup, resetSignupError, logout };

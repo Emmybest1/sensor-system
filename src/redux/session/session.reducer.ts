@@ -43,6 +43,10 @@ const sessionReducer: Reducer<SessionState, SessionState | any> = (state = initi
       return { ...state, error: null };
     }
 
+    case types.LOG_OUT_SUCCESS: {
+      return initialState;
+    }
+
     default: {
       return state;
     }

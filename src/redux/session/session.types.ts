@@ -5,6 +5,7 @@ const types = {
   SIGN_UP_STARTED: '@sensorsystem/session/SIGN_UP_STARTED',
   SIGN_UP_SUCCESS: '@sensorsystem/session/SIGN_UP_SUCCESS',
   SIGN_UP_FAILURE: '@sensorsystem/session/SIGN_UP_FAILURE',
+  LOG_OUT_SUCCESS: '@sensorsystem/session/LOG_OUT_SUCCESS',
   RESET_LOG_IN_FAILURE: '@sensorsystem/session/RESET_LOG_IN_FAILURE',
   RESET_SIGN_UP_FAILURE: '@sensorsystem/session/RESET_SIGN_UP_FAILURE',
 };
