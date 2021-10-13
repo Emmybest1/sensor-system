@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 import { Paths } from 'routes';
-import { useUniqueids } from 'hooks';
 import { signup } from 'redux/root.actions';
+import { useUniqueids, useTitle } from 'hooks';
 import { Footer, Main } from 'components/layouts';
 import { selectSessionError } from 'redux/root.selectors';
 import { Button, Input, Error } from 'components/partials';
@@ -72,6 +72,7 @@ const initialSignUpData = {
 };
 
 const SignUp: React.FC = () => {
+  useTitle('Signup 🔐');
   const dispatch = useDispatch();
   const [emailId, passwordId] = useUniqueids(2);
   const error = useSelector(selectSessionError);

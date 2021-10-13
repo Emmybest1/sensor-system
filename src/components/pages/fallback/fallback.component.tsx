@@ -2,6 +2,7 @@ import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { useTitle } from 'hooks';
 import { Main } from 'components/layouts';
 import { Button, Logo } from 'components/partials';
 
@@ -47,6 +48,7 @@ type LocationState = {
 };
 
 const Fallback: React.FC<FallbackPropTypes> = ({ heading, message, fallbackPath }) => {
+  useTitle('Error 🚨');
   const history = useHistory();
   const location = useLocation<LocationState>();
 

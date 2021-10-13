@@ -5,8 +5,8 @@ import styled from 'styled-components';
 
 import { Paths } from 'routes';
 import { LoginData } from 'api';
-import { useUniqueids } from 'hooks';
 import { login } from 'redux/root.actions';
+import { useTitle, useUniqueids } from 'hooks';
 import { Footer, Main } from 'components/layouts';
 import { selectSessionError } from 'redux/root.selectors';
 import { Error, Button, Input } from 'components/partials';
@@ -68,6 +68,7 @@ const initialLoginData = {
 };
 
 const SignUp: React.FC = () => {
+  useTitle('Login 🔐');
   const dispatch = useDispatch();
   const [emailId, passwordId] = useUniqueids(2);
   const error = useSelector(selectSessionError);
