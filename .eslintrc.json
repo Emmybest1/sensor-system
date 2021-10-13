@@ -26,6 +26,7 @@
     "jsx-a11y/label-has-associated-control": "off",
     "react/jsx-one-expression-per-line": "off",
     "comma-dangle": "off",
+    "prefer-object-spread": "off",
     "import/no-extraneous-dependencies": "off",
     "object-curly-newline": "off",
     "react/react-in-jsx-scope": "off",
