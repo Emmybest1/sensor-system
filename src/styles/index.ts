@@ -1,1 +1,1 @@
-export {};
+export * from './normalize.style';
