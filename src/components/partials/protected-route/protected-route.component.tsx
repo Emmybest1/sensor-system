@@ -14,6 +14,7 @@ const ProtectedRoute: React.FC<ProtectedRoutePropTypes> = ({ pagePermissionNumbe
   const history = useHistory();
 
   const currentUser = getCurrentUser();
+
   const isAuthorized = checkIsUserAuthorizedToAccessPage(pagePermissionNumber, currentUser?.permissions);
 
   if (!isAuthorized) {

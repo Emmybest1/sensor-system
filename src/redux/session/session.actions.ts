@@ -23,7 +23,10 @@ const login = (data: LoginData, onSuccessDispatch?: Function, onErrorDispatch?: 
   $senTemApi
     .login(`${process.env.REACT_APP_OPENDATA_DATABASE_URL}login`, data)
     .then((response) => {
-      const currentUser: CurrentUser = Object.assign({ date: new Date(), permissions: [PAGES_PERMISSIONS] }, response) as unknown as CurrentUser;
+      const currentUser: CurrentUser = Object.assign(
+        { date: new Date(), permissions: [PAGES_PERMISSIONS.HOME, PAGES_PERMISSIONS.HISTORIES, PAGES_PERMISSIONS.HISTORY] },
+        response
+      ) as unknown as CurrentUser;
 
       storeCurrentUser(currentUser);
 
@@ -55,7 +58,10 @@ const signup = (data: LoginData, onSuccessDispatch?: Function, onErrorDispatch?:
   $senTemApi
     .signUp(`${process.env.REACT_APP_OPENDATA_DATABASE_URL}signup`, data)
     .then((response) => {
-      const currentUser: CurrentUser = Object.assign({ date: new Date(), permissions: [PAGES_PERMISSIONS] }, response) as unknown as CurrentUser;
+      const currentUser: CurrentUser = Object.assign(
+        { date: new Date(), permissions: [PAGES_PERMISSIONS.HOME, PAGES_PERMISSIONS.HISTORIES, PAGES_PERMISSIONS.HISTORY] },
+        response
+      ) as unknown as CurrentUser;
 
       storeCurrentUser(currentUser);
 
