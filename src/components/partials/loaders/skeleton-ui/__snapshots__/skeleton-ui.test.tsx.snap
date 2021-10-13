@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SkeletonUi/> should render Component 1`] = `
+<div
+  class="sc-bdfBQB bKdmMW"
+  shape="blockHorizone"
+/>
+`;
