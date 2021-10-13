@@ -36,7 +36,7 @@ const login = (data: LoginData, onSuccessDispatch?: Function, onErrorDispatch?: 
     .catch((error) => {
       if (onErrorDispatch) onErrorDispatch();
 
-      dispatch(loginFailed(error as string));
+      dispatch(loginFailed(error.message as string));
     });
 };
 
@@ -63,12 +63,12 @@ const signup = (data: LoginData, onSuccessDispatch?: Function, onErrorDispatch?:
 
       window.location.replace(Paths.home);
 
-      dispatch(loginSuccessful(response as User));
+      dispatch(signupSuccessful(response as User));
     })
     .catch((error) => {
       if (onErrorDispatch) onErrorDispatch();
 
-      dispatch(signupFailed(error as string));
+      dispatch(signupFailed(error.message as string));
     });
 };
 

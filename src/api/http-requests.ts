@@ -66,7 +66,9 @@ const get = async <T>(url: string): Promise<T> => {
   });
 
   if (!response.ok) {
-    throw new Error(response.statusText);
+    const errorMessage = await response.text();
+
+    throw new Error(errorMessage || response.statusText);
   }
 
   return response.json() as Promise<T>;
@@ -83,7 +85,7 @@ const login = async <T>(url: string, data: LoginData): Promise<T> => {
   });
 
   if (!response.ok) {
-    throw new Error(response.statusText);
+    throw new Error((await response.text()) || response.statusText);
   }
 
   return response.json() as Promise<T>;
@@ -100,7 +102,7 @@ const signUp = async <T>(url: string, data: LoginData): Promise<T> => {
   });
 
   if (!response.ok) {
-    throw new Error(response.statusText);
+    throw new Error((await response.text()) || response.statusText);
   }
 
   return response.json() as Promise<T>;
