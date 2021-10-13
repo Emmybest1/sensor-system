@@ -59,4 +59,8 @@ a{
 .link{
     color: #1e90ff;
 }
+
+.panel-hash{
+    color: #676a71;
+}
 `;
