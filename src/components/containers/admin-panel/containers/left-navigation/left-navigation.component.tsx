@@ -59,6 +59,11 @@ const EmailNode = styled.a`
   }
 `;
 
+const AccordionWrapper = styled.div`
+  border-bottom: 0.5px solid #676a71;
+  padding-bottom: 10px;
+`;
+
 const LogoWrapper = styled.div`
   margin: 1rem 0;
 `;
@@ -76,12 +81,14 @@ export const LeftNavigation: React.FC = () => {
           <Logo />
         </LogoWrapper>
 
-        <Accordion>
-          <Accordion.Header title="Histories" />
-          <Accordion.Body>
-            <Link to={Paths.histories}>View histories</Link>
-          </Accordion.Body>
-        </Accordion>
+        <AccordionWrapper>
+          <Accordion>
+            <Accordion.Header title="Histories" />
+            <Accordion.Body>
+              <Link to={Paths.histories}>View histories</Link>
+            </Accordion.Body>
+          </Accordion>
+        </AccordionWrapper>
       </Body>
 
       <Footer>
