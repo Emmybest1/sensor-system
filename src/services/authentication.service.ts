@@ -20,16 +20,4 @@ const removeCurrentUser = (): void => {
   window.localStorage.removeItem('currentUser');
 };
 
-const checkIsTokenValid = (): boolean => {
-  const currentUser = getCurrentUser();
-
-  if (!currentUser) {
-    return true;
-
-    // Todo Check if current date is greater than 3 days, then you false
-  }
-
-  return false;
-};
-
-export { storeCurrentUser, getCurrentUser, removeCurrentUser, checkIsTokenValid };
+export { storeCurrentUser, getCurrentUser, removeCurrentUser };
