@@ -1,8 +1,15 @@
-const storeCurrentUser = <T>(currentUser:Record<string, T>):void => {
+interface User {
+    id: number|string;
+    email:string;
+    accessToken:string;
+
+}
+
+const storeCurrentUser = (currentUser:User):void => {
   window.localStorage.setItem('currentUser', JSON.stringify(currentUser));
 };
 
-const getCurrentUser = ():Record<string, any> => {
+const getCurrentUser = ():User => {
   const currentUser = window.localStorage.getItem('currentUser');
 
   const augmentedCurrentUserData = Object.assign({ date: new Date(), currentUser });
