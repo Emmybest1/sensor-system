@@ -1,10 +1,14 @@
 import { User } from 'redux/session/session';
 
-const storeCurrentUser = (currentUser: User): void => {
+export interface CurrentUser extends User {
+  permissions: number[];
+}
+
+const storeCurrentUser = (currentUser: CurrentUser): void => {
   window.localStorage.setItem('currentUser', JSON.stringify(currentUser));
 };
 
-const getCurrentUser = (): User => {
+const getCurrentUser = (): CurrentUser => {
   const currentUser = window.localStorage.getItem('currentUser');
 
   const augmentedCurrentUserData = Object.assign({ date: new Date(), currentUser });

@@ -3,10 +3,10 @@ import { action } from 'typesafe-actions';
 import { ActionCreator, Action } from 'redux';
 
 import { Paths } from 'routes';
-import { User } from './session';
+import { PAGES_PERMISSIONS, User } from './session';
 import { types } from './session.types';
 import { $senTemApi, LoginData } from 'api';
-import { storeCurrentUser } from 'services';
+import { CurrentUser, storeCurrentUser } from 'services';
 
 /** *****
  * login actions creators
@@ -23,7 +23,9 @@ const login = (data: LoginData, onSuccessDispatch: Function, onErrorDispatch: Fu
   $senTemApi
     .login(`${process.env.REACT_APP_OPENDATA_DATABASE_URL}api/login`, data)
     .then((response) => {
-      storeCurrentUser(response as User);
+      const currentUser: CurrentUser = Object.assign({ permissions: [PAGES_PERMISSIONS] }, response) as unknown as CurrentUser;
+
+      storeCurrentUser(Object.create(currentUser));
 
       if (onSuccessDispatch) onSuccessDispatch();
 
@@ -53,13 +55,15 @@ const signup = (data: LoginData, onSuccessDispatch: Function, onErrorDispatch: F
   $senTemApi
     .login(`${process.env.REACT_APP_OPENDATA_DATABASE_URL}api/login`, data)
     .then((response) => {
-      storeCurrentUser(response as User);
+      const currentUser: CurrentUser = Object.assign({ permissions: [PAGES_PERMISSIONS] }, response) as unknown as CurrentUser;
+
+      storeCurrentUser(Object.create(currentUser));
 
       if (onSuccessDispatch) onSuccessDispatch();
 
       window.location.replace(Paths.home);
 
-      dispatch(signupSuccessful(response as User));
+      dispatch(loginSuccessful(response as User));
     })
     .catch((error) => {
       if (onErrorDispatch) onErrorDispatch();
