@@ -13,7 +13,7 @@ enum Paths {
   signUp = '/signup',
   fallback = '/fallback',
   histories = '/histories',
-  history = '/histories/:historyId',
+  event = '/events/:sensorKey',
 }
 
 const Routes: React.FC = () => (
@@ -24,7 +24,7 @@ const Routes: React.FC = () => (
         <Route exact path={Paths.signUp} component={SignUp} />
         <Route exact path={Paths.fallback} component={Fallback} />
         <ProtectedRoute exact path={Paths.home} component={Home} pagePermissionNumber={PAGES_PERMISSIONS.HOME} />
-        <ProtectedRoute exact path={Paths.history} component={Histories} pagePermissionNumber={PAGES_PERMISSIONS.HISTORY} />
+        <ProtectedRoute exact path={Paths.event} component={Home} pagePermissionNumber={PAGES_PERMISSIONS.HOME} />
         <ProtectedRoute exact path={Paths.histories} component={Histories} pagePermissionNumber={PAGES_PERMISSIONS.HISTORIES} />
         <Route component={Fallback} />
       </Switch>
