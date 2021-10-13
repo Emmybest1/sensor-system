@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { LoginData } from 'api';
 import { Paths } from 'routes';
 import { useUniqueids } from 'hooks';
 import { Footer, Main } from 'components/layouts';
@@ -53,19 +54,14 @@ const HaveAccountNode = styled.p`
   font-size: 0.9rem;
 `;
 
-interface LoginData {
-  email: string;
-  password: string;
-}
-
 const initialLoginData = {
   email: '',
   password: '',
 };
 
 const SignUp: React.FC = () => {
-  const [loginData, setLoginData] = useState<LoginData>(initialLoginData);
   const [emailId, passwordId] = useUniqueids(2);
+  const [loginData, setLoginData] = useState<LoginData>(initialLoginData);
 
   return (
     <LoginWrapper>

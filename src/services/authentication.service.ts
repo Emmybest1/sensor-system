@@ -1,15 +1,10 @@
-interface User {
-    id: number|string;
-    email:string;
-    accessToken:string;
+import { User } from 'redux/session/session';
 
-}
-
-const storeCurrentUser = (currentUser:User):void => {
+const storeCurrentUser = (currentUser: User): void => {
   window.localStorage.setItem('currentUser', JSON.stringify(currentUser));
 };
 
-const getCurrentUser = ():User => {
+const getCurrentUser = (): User => {
   const currentUser = window.localStorage.getItem('currentUser');
 
   const augmentedCurrentUserData = Object.assign({ date: new Date(), currentUser });
@@ -17,11 +12,11 @@ const getCurrentUser = ():User => {
   return currentUser ? JSON.parse(augmentedCurrentUserData) : currentUser;
 };
 
-const removeCurrentUser = ():void => {
+const removeCurrentUser = (): void => {
   window.localStorage.removeItem('currentUser');
 };
 
-const checkIsTokenValid = ():boolean => {
+const checkIsTokenValid = (): boolean => {
   const currentUser = getCurrentUser();
 
   if (!currentUser) {
@@ -33,6 +28,4 @@ const checkIsTokenValid = ():boolean => {
   return false;
 };
 
-export {
-  storeCurrentUser, getCurrentUser, removeCurrentUser, checkIsTokenValid
-};
+export { storeCurrentUser, getCurrentUser, removeCurrentUser, checkIsTokenValid };

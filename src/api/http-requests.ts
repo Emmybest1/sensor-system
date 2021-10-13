@@ -1,20 +1,22 @@
+import firebase from 'firebase';
+
 import { getCurrentUser } from 'services';
 import { db } from './firebase/config/config';
 
-export interface IUser{
-    email:string;
-    password:string;
+export interface LoginData {
+  email: string;
+  password: string;
 }
 
 const headers = new Headers({
   'Content-type': 'application/json',
-  credentials: 'omit'
+  credentials: 'omit',
 });
 
 /** ******
  * post util to firebase firestore service for storing persistent data history
  */
-const post = <T>(collection:string, data:Record<string, T>):Promise<T> => {
+const post = <T>(collection: string, data: Record<string, T>): Promise<firebase.firestore.DocumentReference<firebase.firestore.DocumentData>> => {
   const currentUser = getCurrentUser();
 
   // a check to ensure user is authenticated and has a data, nota bene: not
@@ -23,15 +25,15 @@ const post = <T>(collection:string, data:Record<string, T>):Promise<T> => {
     throw new Error('Unauthorized user');
   }
 
-  const response = db.collection(collection).add(data);
+  const response: Promise<firebase.firestore.DocumentReference<firebase.firestore.DocumentData>> = db.collection(collection).add(data);
 
-  return response as Promise<T>;
+  return response;
 };
 
 /** ******
  * get util for getting a collection in firestore service
  */
-const getCollection = <T>(collection: string):Promise<T> => {
+const getCollection = (collection: string): Promise<firebase.firestore.QuerySnapshot<firebase.firestore.DocumentData>> | void => {
   const currentUser = getCurrentUser();
 
   // a check to ensure user is authenticated and has a data, nota bene: not
@@ -40,15 +42,15 @@ const getCollection = <T>(collection: string):Promise<T> => {
     throw new Error('Unauthorized user');
   }
 
-  const response = db.collection(collection).get();
+  const response: Promise<firebase.firestore.QuerySnapshot<firebase.firestore.DocumentData>> = db.collection(collection).get();
 
-  return response as Promise<T>;
+  return response;
 };
 
 /** ******
  * get util
  */
-const get = async<T>(url:string):Promise<T> => {
+const get = async <T>(url: string): Promise<T> => {
   const currentUser = getCurrentUser();
 
   // a check to ensure user is authenticated and has a data
@@ -60,7 +62,7 @@ const get = async<T>(url:string):Promise<T> => {
 
   const response = await fetch(url, {
     method: 'GET',
-    headers
+    headers,
   });
 
   if (!response.ok) {
@@ -73,11 +75,11 @@ const get = async<T>(url:string):Promise<T> => {
 /** ******
  * login util
  */
-const login = async <T>(url:string, data:IUser):Promise<T> => {
+const login = async <T>(url: string, data: LoginData): Promise<T> => {
   const response = await fetch(url, {
     method: 'POST',
     headers,
-    body: JSON.stringify(data)
+    body: JSON.stringify(data),
   });
 
   if (!response.ok) {
@@ -90,11 +92,11 @@ const login = async <T>(url:string, data:IUser):Promise<T> => {
 /** ******
  * Signup util
  */
-const signUp = async <T>(url:string, data:IUser):Promise<T> => {
+const signUp = async <T>(url: string, data: LoginData): Promise<T> => {
   const response = await fetch(url, {
     method: 'POST',
     headers,
-    body: JSON.stringify(data)
+    body: JSON.stringify(data),
   });
 
   if (!response.ok) {
@@ -104,10 +106,10 @@ const signUp = async <T>(url:string, data:IUser):Promise<T> => {
   return response.json() as Promise<T>;
 };
 
-export const _senTemAPI = {
+export const $senTemApi = {
   login,
   signUp,
   post,
   get,
-  getCollection
+  getCollection,
 };
