@@ -17,7 +17,7 @@ const loginFailed: ActionCreator<Action<string>> = (payload: string) => action(t
 
 const resetLoginError: ActionCreator<Action<string>> = () => action(types.RESET_LOG_IN_FAILURE);
 
-const login = (data: LoginData, onSuccessDispatch: Function, onErrorDispatch: Function) => (dispatch: (arg0: Action<string>) => void) => {
+const login = (data: LoginData, onSuccessDispatch?: Function, onErrorDispatch?: Function) => (dispatch: (arg0: Action<string>) => void) => {
   dispatch(action(types.LOG_IN_STARTED));
 
   $senTemApi
@@ -49,7 +49,7 @@ const signupFailed: ActionCreator<Action<string>> = (payload: string) => action(
 
 const resetSignupError: ActionCreator<Action<string>> = () => action(types.RESET_LOG_IN_FAILURE);
 
-const signup = (data: LoginData, onSuccessDispatch: Function, onErrorDispatch: Function) => (dispatch: (arg0: Action<string>) => void) => {
+const signup = (data: LoginData, onSuccessDispatch?: Function, onErrorDispatch?: Function) => (dispatch: (arg0: Action<string>) => void) => {
   dispatch(action(types.LOG_IN_STARTED));
 
   $senTemApi
