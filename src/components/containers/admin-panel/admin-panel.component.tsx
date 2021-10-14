@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
+import { useIsMounted } from 'hooks';
 import { Main } from 'components/layouts';
+import { getHistories } from 'redux/root.actions';
+import { History } from 'redux/histories/histories';
+import { selectHistories } from 'redux/root.selectors';
 import { Content } from './containers/content/content.component';
 import { LeftNavigation } from './containers/left-navigation/left-navigation.component';
 
@@ -37,16 +42,28 @@ type AdminPanelPropTypes = {
   children: React.ReactNode;
 };
 
-export const AdminPanel: React.FC<AdminPanelPropTypes> = ({ title, children }) => (
-  <Main>
-    <AdminPanelWrapper>
-      <Col1>
-        <LeftNavigation />
-      </Col1>
+export const AdminPanel: React.FC<AdminPanelPropTypes> = ({ title, children }) => {
+  const dispatch = useDispatch();
+  const isMounted = useIsMounted();
+  const histories: History[] = useSelector(selectHistories);
 
-      <Col2>
-        <Content title={title}>{children}</Content>
-      </Col2>
-    </AdminPanelWrapper>
-  </Main>
-);
+  useEffect(() => {
+    if (isMounted && !histories.length) {
+      dispatch(getHistories());
+    }
+  }, [isMounted]);
+
+  return (
+    <Main>
+      <AdminPanelWrapper>
+        <Col1>
+          <LeftNavigation />
+        </Col1>
+
+        <Col2>
+          <Content title={title}>{children}</Content>
+        </Col2>
+      </AdminPanelWrapper>
+    </Main>
+  );
+};

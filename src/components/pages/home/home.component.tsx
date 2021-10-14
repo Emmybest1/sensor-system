@@ -5,10 +5,12 @@ import styled from 'styled-components';
 import { Events } from 'redux/events/events';
 import { useIsMounted, useTitle } from 'hooks';
 import { AdminPanel } from 'components/containers';
+import { History } from 'redux/histories/histories';
 import { Notification, RingLoader, SkeletonUi } from 'components/partials';
 import { getEvents, postHistory, resetEventError, resetPostHistorySuccessMessage } from 'redux/root.actions';
-import { selectEventsIsLoading, selectEventsError, selectEvents, selectPostHistorySuccessMessage } from 'redux/root.selectors';
+import { selectEventsIsLoading, selectEventsError, selectEvents, selectPostHistorySuccessMessage, selectHistories } from 'redux/root.selectors';
 import { EventCard } from './containers/event-card/event-card.component';
+import { filters } from 'utils/filter.util';
 
 const Home: React.FC = () => {
   useTitle('Home 🏚');
@@ -19,6 +21,8 @@ const Home: React.FC = () => {
   const isLoadingEvents = useSelector(selectEventsIsLoading);
   const postHistoriesSuccessMessage = useSelector(selectPostHistorySuccessMessage);
   const [hoursCount, setHoursCount] = useState<number>(1);
+
+  const histories: History[] = useSelector(selectHistories);
 
   useEffect(() => {
     let interval: ReturnType<typeof setInterval>;
@@ -39,17 +43,12 @@ const Home: React.FC = () => {
 
   // send new sensor data to histories api ones the events data changes every one hour
   useEffect(() => {
-    console.log('Posting to histories api');
-    /** ****
-     * write a util function that takes in the new event and checks the time to ensure
-     * such events is not already submitted to api, nota bena: we are using date as the UID
-     * because we do not have a UID from backend
-     * */
+    if (events && histories.length) {
+      const history = filters.getHistory(histories, events);
 
-    if (events) {
-      dispatch(postHistory(events));
+      dispatch(postHistory(history || events));
     }
-  }, [events]);
+  }, [events, histories]);
 
   const LoaderWrapper = styled.div`
     top: 100px;

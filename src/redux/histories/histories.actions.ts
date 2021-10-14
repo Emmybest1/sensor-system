@@ -1,10 +1,13 @@
+/* eslint-disable no-useless-return */
 /* eslint-disable no-unused-vars */
+/* eslint-disable consistent-return */
 import { action } from 'typesafe-actions';
 import { ActionCreator, Action } from 'redux';
 
 import { $senTemApi } from 'api';
 import { types } from './histories.types';
 import { Events } from 'redux/events/events';
+import { firebaseQuery } from 'middleware';
 
 const getHistoriesSuccessful: ActionCreator<Action<string>> = (payload: Events[]) => action(types.GET_HISTORIES_SUCCESS, payload);
 
@@ -40,6 +43,12 @@ export const postHistorySuccess: ActionCreator<Action<string>> = (payload: strin
 export const postHistoryFailed: ActionCreator<Action<string>> = (payload: string) => action(types.POST_HISTORY_FAILURE, payload);
 
 export const postHistory = (data: Events) => (dispatch: (arg0: { type: string; payload?: string }) => void) => {
+  if (data.id) {
+    return firebaseQuery.queryIsDocExisting('histories', data.id).then((response) => {
+      if (response) return;
+    });
+  }
+
   dispatch(action(types.POST_HISTORY_STARTED));
 
   $senTemApi

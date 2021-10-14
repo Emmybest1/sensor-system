@@ -3,6 +3,7 @@ import { ActionType } from 'typesafe-actions';
 import { GenericState, GENERIC_STATE_KEYS } from 'redux/root';
 
 export interface Events {
+  id?: string;
   date: string;
   sensor1: number;
   sensor2: number;
