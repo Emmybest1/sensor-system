@@ -36,14 +36,19 @@ const Home: React.FC = () => {
   const EventCardsWrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
     width: 100%;
 
     & > * {
-      width: 33%;
+      width: 31%;
 
-      @media (max-width: 700) {
+      @media (max-width: 800px) {
         width: 100%;
       }
+    }
+
+    @media (max-width: 800px) {
+      flex-direction: column;
     }
   `;
 
