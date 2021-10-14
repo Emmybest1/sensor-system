@@ -21,6 +21,8 @@
   },
   "histories": {
     "isLoading": false,
-    "error": null
+    "error": null,
+    "histories": [],
+    "successMessage": ""
   }
 }

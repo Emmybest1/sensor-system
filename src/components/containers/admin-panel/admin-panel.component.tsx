@@ -18,7 +18,7 @@ const Col1 = styled.div`
   width: 40%;
 
   @media (min-width: 701px) {
-    width: 25%;
+    width: 20%;
   }
 `;
 
@@ -28,7 +28,7 @@ const Col2 = styled.div`
   width: 60%;
 
   @media (min-width: 701px) {
-    width: 75%;
+    width: 80%;
   }
 `;
 

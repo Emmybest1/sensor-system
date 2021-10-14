@@ -1,5 +1,6 @@
-import { GenericState, GENERIC_STATE_KEYS } from 'redux/root';
 import { ActionType } from 'typesafe-actions';
+
+import { GenericState, GENERIC_STATE_KEYS } from 'redux/root';
 
 export interface Events {
   date: string;
@@ -19,7 +20,7 @@ const EVENTS_NAME = 'events';
 
 const EVENTS_STATE_KEYS = {
   ...GENERIC_STATE_KEYS,
-  events: 'events',
+  [EVENTS_NAME]: EVENTS_NAME,
 };
 
 export { EVENTS_NAME, EVENTS_STATE_KEYS };

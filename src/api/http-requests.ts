@@ -1,6 +1,7 @@
 import firebase from 'firebase';
 
 import { getCurrentUser } from 'services';
+import { Events } from 'redux/events/events';
 import { db } from './firebase/config/config';
 
 export interface LoginData {
@@ -10,13 +11,13 @@ export interface LoginData {
 
 const headers = new Headers({
   'Content-type': 'application/json',
-  credentials: 'omit',
+  credentials: 'include'
 });
 
 /** ******
  * post util to firebase firestore service for storing persistent data history
  */
-const post = <T>(collection: string, data: Record<string, T>): Promise<firebase.firestore.DocumentReference<firebase.firestore.DocumentData>> => {
+const post = (collection: string, data: Events): Promise<firebase.firestore.DocumentReference<firebase.firestore.DocumentData>> => {
   const currentUser = getCurrentUser();
 
   // a check to ensure user is authenticated and has a data, nota bene: not
@@ -33,7 +34,7 @@ const post = <T>(collection: string, data: Record<string, T>): Promise<firebase.
 /** ******
  * get util for getting a collection in firestore service
  */
-const getCollection = (collection: string): Promise<firebase.firestore.QuerySnapshot<firebase.firestore.DocumentData>> | void => {
+const getCollection = (collection: string) => {
   const currentUser = getCurrentUser();
 
   // a check to ensure user is authenticated and has a data, nota bene: not
@@ -62,7 +63,7 @@ const get = async <T>(url: string): Promise<T> => {
 
   const response = await fetch(url, {
     method: 'GET',
-    headers,
+    headers
   });
 
   if (!response.ok) {

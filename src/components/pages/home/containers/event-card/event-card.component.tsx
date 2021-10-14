@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+
+import { formatDate } from 'utils';
 
 const EventCardWrapper = styled.div`
   border-radius: 10px;
@@ -36,12 +37,10 @@ type EventCardPropTypes = {
 };
 
 export const EventCard: React.FC<EventCardPropTypes> = ({ date, name, value }) => (
-  <Link to={`/events/${name}`}>
-    <EventCardWrapper>
-      <Header>{date}</Header>
-      <Body>
-        <strong className="name">{name}</strong>&nbsp;<small className="value">{value}</small>
-      </Body>
-    </EventCardWrapper>
-  </Link>
+  <EventCardWrapper>
+    <Header>{formatDate(date)}</Header>
+    <Body>
+      <strong className="name">{name}</strong>&nbsp;<small className="value">{value}</small>
+    </Body>
+  </EventCardWrapper>
 );
