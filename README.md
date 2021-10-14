@@ -1,5 +1,11 @@
 # Sensor System Frontend Documentation
 
+## First time in the app
+
+Run:
+
+    npm install or yarn
+
 ## Available Scripts
 
 In the project directory, you can run:
