@@ -25,7 +25,7 @@ const Routes: React.FC = () => (
         <Route exact path={Paths.signUp} component={SignUp} />
         <Route exact path={Paths.fallback} component={Fallback} />
         <ProtectedRoute exact path={Paths.home} component={Home} pagePermissionNumber={PAGES_PERMISSIONS.HOME} />
-        <ProtectedRoute exact path={Paths.history} component={Histories} pagePermissionNumber={PAGES_PERMISSIONS.HOME} />
+        <ProtectedRoute exact path={Paths.history} component={Histories} pagePermissionNumber={PAGES_PERMISSIONS.HISTORIES} />
         <ProtectedRoute exact path={Paths.histories} component={Histories} pagePermissionNumber={PAGES_PERMISSIONS.HISTORIES} />
         <Route component={Fallback} />
       </Switch>
