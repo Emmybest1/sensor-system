@@ -7,7 +7,7 @@ import { ActionCreator, Action } from 'redux';
 import { $senTemApi } from 'api';
 import { types } from './histories.types';
 import { Events } from 'redux/events/events';
-import { firebaseQuery } from 'middleware';
+import { firebaseQuery } from 'middlewares';
 
 const getHistoriesSuccessful: ActionCreator<Action<string>> = (payload: Events[]) => action(types.GET_HISTORIES_SUCCESS, payload);
 
