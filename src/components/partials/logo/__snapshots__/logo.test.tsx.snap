@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Logo/> should render Component 1`] = `
+<a
+  href="/"
+>
+  <div
+    class="sc-higWrZ bUZOjG"
+  >
+    <span
+      class="sc-lcuiOb bkxxDL"
+    >
+      S
+    </span>
+    <span
+      class="sc-clsFYl gEZzHx"
+    >
+      e
+    </span>
+    <span
+      class="sc-gGmKaI diaHOG"
+    >
+      n
+    </span>
+    <span
+      class="sc-lcuiOb bkxxDL"
+    >
+      T
+    </span>
+    <span
+      class="sc-ehSDrC gcpkSv"
+    >
+      e
+    </span>
+    <span
+      class="sc-gGmKaI diaHOG"
+    >
+      m
+    </span>
+  </div>
+</a>
+`;

@@ -1,5 +1,20 @@
+import { act, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+
+import { Input } from '..';
+
+const renderInput = () => {
+  const { rerender } = render(<Input id="name" type="text" placeholder="name" />);
+
+  return rerender;
+};
 describe('<Input/>', () => {
-  test('should be true for 1 < 2', () => {
-    expect(1 < 2).toBeTruthy();
+  test('should render Component', () => {
+    const rerender = renderInput();
+
+    expect(screen.getByPlaceholderText(/name/i)).toHaveAttribute('type', 'text');
+
+    rerender(<Input type="textarea" label="Info" id="info" />);
+    expect(screen.getByLabelText(/info/i)).not.toHaveAttribute('type', 'text');
   });
 });

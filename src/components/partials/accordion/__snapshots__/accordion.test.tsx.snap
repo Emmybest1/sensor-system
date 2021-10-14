@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Accordion/> Should render Component 1`] = `
+<div
+  class="sc-eCstlR"
+>
+  <div
+    class="sc-bdfBQB fNVPBu"
+  >
+    <h3
+      class="sc-gsTEea gpJJjB"
+    >
+      <span
+        class="panel-hash"
+      >
+        #
+      </span>
+       
+      Header
+    </h3>
+    <div
+      class="sc-dlfnuX bYesIP accordion accordion--opened"
+      role="button"
+    >
+      <i
+        aria-hidden="true"
+        class="fa fa-angle-up"
+      />
+    </div>
+  </div>
+  <div
+    class="sc-hKgJUU blJQxl"
+  >
+    <span
+      class="panel-hash"
+    >
+      #
+    </span>
+     
+    <ul>
+      <li>
+        Item 1
+      </li>
+      <li>
+        Item 2
+      </li>
+      <li>
+        Item 3
+      </li>
+    </ul>
+  </div>
+</div>
+`;

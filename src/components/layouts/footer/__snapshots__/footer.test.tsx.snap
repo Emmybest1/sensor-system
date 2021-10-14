@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Footer/> should render Component 1`] = `
+<footer
+  class="sc-gsTEea bHaEwb"
+>
+  Powered by Emmanuel Onah 
+  <time>
+    2021
+  </time>
+</footer>
+`;

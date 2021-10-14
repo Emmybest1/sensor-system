@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Error/> should render Component 1`] = `
+<div
+  aria-atomic="true"
+  aria-live="assertive"
+  class="sc-bdfBQB eXRiR"
+>
+  Sorry you can't proceed
+</div>
+`;

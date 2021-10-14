@@ -24,6 +24,6 @@ export const Input: React.FC<InputPropTypes> = ({ id, type, label, ...restProps 
   <>
     {label && <LabelNode htmlFor={id}>{label}</LabelNode>}
 
-    {type === 'textarea' ? <TextareaNode id={id} cols={10} rows={5} {...restProps} /> : <InputNode id={id} {...restProps} />}
+    {type === 'textarea' ? <TextareaNode id={id} cols={10} rows={5} {...restProps} /> : <InputNode id={id} type={type} {...restProps} />}
   </>
 );
