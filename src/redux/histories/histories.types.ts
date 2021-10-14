@@ -1,1 +1,13 @@
-export {};
+const types = {
+  POST_HISTORY_STARTED: '@sensorsystem/histories/POST_HISTORY_STARTED',
+  POST_HISTORY_SUCCESS: '@sensorsystem/histories/POST_HISTORY_SUCCESS',
+  POST_HISTORY_FAILURE: '@sensorsystem/histories/POST_HISTORY_FAILURE',
+  GET_HISTORIES_STARTED: '@sensorsystem/histories/GET_HISTORIES_STARTED',
+  GET_HISTORIES_SUCCESS: '@sensorsystem/histories/GET_HISTORIES_SUCCESS',
+  GET_HISTORIES_FAILURE: '@sensorsystem/histories/GET_HISTORIES_FAILURE',
+  RESET_POST_HISTORY_FAILURE: '@sensorsystem/histories/RESET_POST_HISTORY_FAILURE',
+  RESET_GET_HISTORIES_FAILURE: '@sensorsystem/histories/RESET_GET_HISTORIES_FAILURE',
+  RESET_POST_HISTORY_SUCCESS_MESSAGE: '@sensorsystem/histories/RESET_POST_HISTORY_SUCCESS_MESSAGE',
+};
+
+export { types };
