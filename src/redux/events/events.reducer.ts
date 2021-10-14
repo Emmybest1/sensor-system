@@ -6,7 +6,7 @@ import { Events, EventsActions, EventsState } from './events';
 const initialState: EventsState = {
   isLoading: false,
   error: null,
-  events: {} as Events,
+  events: null as unknown as Events,
 };
 
 const eventsReducer: Reducer<EventsState, EventsActions | any> = (state = initialState, action): EventsState => {

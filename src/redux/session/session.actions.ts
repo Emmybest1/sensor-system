@@ -82,7 +82,6 @@ const logout: ActionCreator<Action<string>> = () => {
   removeCurrentUser();
 
   window.location.replace(Paths.login);
-  window.location.reload();
 
   return action(types.SIGN_UP_SUCCESS);
 };

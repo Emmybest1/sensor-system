@@ -10,6 +10,46 @@ const NotificationWrapper = styled.div`
   margin: 0 auto;
   padding: 10px 20px;
   min-height: 50px;
+  position: absolute;
+  z-index: 20000;
+
+  &.modal {
+    top: 10px;
+    left: 0;
+    right: 0;
+  }
+
+  &.modal--position--top-center {
+    top: 10px;
+    left: 0;
+    right: 0;
+  }
+
+  &.modal--position--top-left {
+    top: 10px;
+    left: 10px;
+  }
+
+  &.modal--position--top-right {
+    top: 10px;
+    right: 10px;
+  }
+
+  &.modal--position--bottom-center {
+    bottom: 10px;
+    left: 0;
+    right: 0;
+  }
+
+  &.modal--position--bottom-left {
+    bottom: 10px;
+    left: 10px;
+  }
+
+  &.modal--position--bottom-right {
+    bottom: 10px;
+    right: 10px;
+  }
 
   &.modal--success {
     background-image: linear-gradient(to right top, #333, #1b1c2b, #2b4747);
@@ -64,7 +104,7 @@ export const Notification: React.FC<NotificationPropTypes> = ({ shownModal, type
   <>
     {shownModal && (
       <ReactPortal label={heading} position={position}>
-        <NotificationWrapper className={`${type === 'success' ? 'modal--success' : 'modal--danger'}`}>
+        <NotificationWrapper className={`modal ${type === 'success' ? 'modal--success' : 'modal--danger'} modal--position--${position}`}>
           <Row1>
             <CloseButton role="button" tabIndex={0} onClick={onCloseHandler} />
           </Row1>

@@ -14,9 +14,10 @@ const getEvents = (onSuccessDispatch?: Function, onErrorDispatch?: Function) => 
   dispatch(action(types.GET_EVENTS_STARTED));
 
   $senTemApi
-    .get('events')
+    .get(`${process.env.REACT_APP_OPENDATA_DATABASE_URL}events`)
     .then((response) => {
       if (onSuccessDispatch) onSuccessDispatch();
+
       dispatch(getEventsSuccessful(response as Events));
     })
     .catch((error) => {
