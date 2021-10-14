@@ -17,7 +17,7 @@ const Home: React.FC = () => {
   const events: Events = useSelector(selectEvents);
   const eventsError = useSelector(selectEventsError);
   const isLoadingEvents = useSelector(selectEventsIsLoading);
-  const [hoursCount, setHoursCount] = useState<number>(1);
+  const [hoursCount, setHoursCount] = useState<number>(0);
 
   useEffect(() => {
     let interval: ReturnType<typeof setInterval>;
@@ -38,7 +38,8 @@ const Home: React.FC = () => {
 
   // send new sensor data to histories api ones the events data changes every one hour
   useEffect(() => {
-    if (events && hoursCount !== 1) {
+    // will only run if hoursCount result to truthy ie. plus 1 hr
+    if (events && hoursCount) {
       dispatch(postHistory(events));
     }
   }, [events]);

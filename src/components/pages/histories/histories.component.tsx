@@ -15,7 +15,7 @@ type Params = {
   historyId: string;
 };
 const Histories: React.FC = () => {
-  useTitle('Home 🏚');
+  useTitle('Histories 🏚');
   const params = useParams<Params>();
   const histories: History[] = useSelector(selectHistories);
   const isLoadingHistories: boolean = useSelector(selectHistoriesIsLoading);
