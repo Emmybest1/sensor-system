@@ -1,0 +1,26 @@
+{
+  "session": {
+    "isLoading": false,
+    "error": null,
+    "user": {
+      "id": "ss01",
+      "date": "2021-10-14T10:39:28.428Z",
+      "permissions": [1, 2, 3],
+      "email": "test05@test.ee",
+      "accessToken": "token.fake@hdhdie838s+0293iedwjkdoiejwkr0w+3o098reirjeow98egdsuihojdwpopieugdsohpwåipoilufdghowpiådfuoöivaewpdifuoöigsulihoupioöhigulasih"
+    }
+  },
+  "events": {
+    "isLoading": false,
+    "error": null,
+    "date": "2021-10-14T10:00:00.000Z",
+    "sensor1": 187.8,
+    "sensor2": 275.75,
+    "sensor3": -3,
+    "sensor4": 61.8
+  },
+  "histories": {
+    "isLoading": false,
+    "error": null
+  }
+}
