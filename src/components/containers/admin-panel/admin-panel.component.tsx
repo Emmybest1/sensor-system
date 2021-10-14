@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import { useIsMounted } from 'hooks';
 import { Main } from 'components/layouts';
+import { RingLoader } from 'components/partials';
 import { getHistories } from 'redux/root.actions';
 import { History } from 'redux/histories/histories';
 import { selectHistories } from 'redux/root.selectors';
@@ -37,12 +38,22 @@ const Col2 = styled.div`
   }
 `;
 
+const LoaderWrapper = styled.div`
+  top: 100px;
+  position: absolute;
+  z-index: 200000;
+  top: 20px;
+  left: 0;
+  right: 0;
+`;
+
 type AdminPanelPropTypes = {
   title: string;
+  isLoading?: boolean;
   children: React.ReactNode;
 };
 
-export const AdminPanel: React.FC<AdminPanelPropTypes> = ({ title, children }) => {
+export const AdminPanel: React.FC<AdminPanelPropTypes> = ({ title, isLoading, children }) => {
   const dispatch = useDispatch();
   const isMounted = useIsMounted();
   const histories: History[] = useSelector(selectHistories);
@@ -54,16 +65,24 @@ export const AdminPanel: React.FC<AdminPanelPropTypes> = ({ title, children }) =
   }, [isMounted]);
 
   return (
-    <Main>
-      <AdminPanelWrapper>
-        <Col1>
-          <LeftNavigation />
-        </Col1>
+    <>
+      <Main>
+        <AdminPanelWrapper>
+          <Col1>
+            <LeftNavigation />
+          </Col1>
 
-        <Col2>
-          <Content title={title}>{children}</Content>
-        </Col2>
-      </AdminPanelWrapper>
-    </Main>
+          <Col2>
+            <Content title={title}>{children}</Content>
+          </Col2>
+        </AdminPanelWrapper>
+      </Main>
+
+      {isLoading && (
+        <LoaderWrapper>
+          <RingLoader isLoading={isLoading} />
+        </LoaderWrapper>
+      )}
+    </>
   );
 };

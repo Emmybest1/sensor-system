@@ -2,7 +2,7 @@
 
 exports[`<Button/> should render Component 1`] = `
 <button
-  class="sc-gTgzoy gUJGCG"
+  class="sc-nFqVA iHlelk"
   color="#fff"
   shape="radius"
   width="80%"

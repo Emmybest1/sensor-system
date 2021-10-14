@@ -52,6 +52,10 @@ a{
     text-decoration: none;
 }
 
+li {
+    list-style: none;
+}
+
 .page{
     padding: 20px 40px;
 }

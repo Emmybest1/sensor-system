@@ -5,12 +5,10 @@ import styled from 'styled-components';
 import { Events } from 'redux/events/events';
 import { useIsMounted, useTitle } from 'hooks';
 import { AdminPanel } from 'components/containers';
-import { History } from 'redux/histories/histories';
-import { Notification, RingLoader, SkeletonUi } from 'components/partials';
-import { getEvents, postHistory, resetEventError, resetPostHistorySuccessMessage } from 'redux/root.actions';
-import { selectEventsIsLoading, selectEventsError, selectEvents, selectPostHistorySuccessMessage, selectHistories } from 'redux/root.selectors';
+import { Notification, SkeletonUi } from 'components/partials';
 import { EventCard } from './containers/event-card/event-card.component';
-import { filters } from 'utils/filter.util';
+import { getEvents, postHistory, resetEventError } from 'redux/root.actions';
+import { selectEventsIsLoading, selectEventsError, selectEvents } from 'redux/root.selectors';
 
 const Home: React.FC = () => {
   useTitle('Home 🏚');
@@ -19,10 +17,7 @@ const Home: React.FC = () => {
   const events: Events = useSelector(selectEvents);
   const eventsError = useSelector(selectEventsError);
   const isLoadingEvents = useSelector(selectEventsIsLoading);
-  const postHistoriesSuccessMessage = useSelector(selectPostHistorySuccessMessage);
   const [hoursCount, setHoursCount] = useState<number>(1);
-
-  const histories: History[] = useSelector(selectHistories);
 
   useEffect(() => {
     let interval: ReturnType<typeof setInterval>;
@@ -43,21 +38,10 @@ const Home: React.FC = () => {
 
   // send new sensor data to histories api ones the events data changes every one hour
   useEffect(() => {
-    if (events && histories.length) {
-      const history = filters.getHistory(histories, events);
-
-      dispatch(postHistory(history || events));
+    if (events && hoursCount !== 1) {
+      dispatch(postHistory(events));
     }
-  }, [events, histories]);
-
-  const LoaderWrapper = styled.div`
-    top: 100px;
-    position: absolute;
-    z-index: 200000;
-    top: 20px;
-    left: 0;
-    right: 0;
-  `;
+  }, [events]);
 
   const EventCardsWrapper = styled.div`
     display: flex;
@@ -80,44 +64,32 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <AdminPanel title="Home">
-        {isLoadingEvents || !events ? (
+      <AdminPanel title="Latest Events" isLoading={isLoadingEvents}>
+        {isLoadingEvents ? (
           <>
             {[...new Array(5)].map((v, i) => (
               <SkeletonUi shape="radiusHorizone" width="100%" height="5px" key={`${v}${i}skui`.trim()} />
             ))}
           </>
-        ) : (
+        ) : null}
+        {events ? (
           <EventCardsWrapper>
             <EventCard date={events.date} name={Object.keys(events)[1]} value={events.sensor1.toString()} />
             <EventCard date={events.date} name={Object.keys(events)[2]} value={events.sensor2.toString()} />
             <EventCard date={events.date} name={Object.keys(events)[3]} value={events.sensor3.toString()} />
             <EventCard date={events.date} name={Object.keys(events)[4]} value={events.sensor4.toString()} />
           </EventCardsWrapper>
+        ) : (
+          <>{!isLoadingEvents ? <p>Sorry no Events currently.</p> : null}</>
         )}
       </AdminPanel>
 
-      <LoaderWrapper>
-        <RingLoader isLoading={isLoadingEvents} />
-      </LoaderWrapper>
-
       <Notification
-        shownModal={!!eventsError}
         type="danger"
         heading="Events Error"
         message={eventsError}
-        onCloseHandler={() => {
-          dispatch(resetEventError());
-        }}
-      />
-      <Notification
-        shownModal={!!postHistoriesSuccessMessage}
-        type="success"
-        heading="History Posted"
-        message={postHistoriesSuccessMessage}
-        onCloseHandler={() => {
-          dispatch(resetPostHistorySuccessMessage());
-        }}
+        shownModal={!!eventsError}
+        onCloseHandler={() => dispatch(resetEventError())}
       />
     </>
   );
