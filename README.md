@@ -1,5 +1,8 @@
 # Sensor System Frontend Documentation
 
+## App accronym
+The app is shortened to SenTem = Sensor and System
+
 ## First time in the app
 
 Run:
