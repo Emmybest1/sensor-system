@@ -11,7 +11,7 @@ export interface LoginData {
 
 const headers = new Headers({
   'Content-type': 'application/json',
-  credentials: 'include'
+  credentials: 'include',
 });
 
 /** ******
@@ -59,11 +59,13 @@ const get = async <T>(url: string): Promise<T> => {
     throw new Error('Unauthorized user');
   }
 
-  headers.append('Authorization', `Bearer ${currentUser.accessToken}`);
+  if (!headers.get('Authorization')) {
+    headers.append('Authorization', `Bearer ${currentUser.accessToken}`);
+  }
 
   const response = await fetch(url, {
     method: 'GET',
-    headers
+    headers,
   });
 
   if (!response.ok) {
