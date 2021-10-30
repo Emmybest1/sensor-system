@@ -11,7 +11,6 @@ export interface LoginData {
 
 const headers = new Headers({
   'Content-type': 'application/json',
-  credentials: 'include',
 });
 
 /** ******
@@ -65,6 +64,7 @@ const get = async <T>(url: string): Promise<T> => {
 
   const response = await fetch(url, {
     method: 'GET',
+    credentials: 'include',
     headers,
   });
 
@@ -83,6 +83,7 @@ const get = async <T>(url: string): Promise<T> => {
 const login = async <T>(url: string, data: LoginData): Promise<T> => {
   const response = await fetch(url, {
     method: 'POST',
+    credentials: 'include',
     headers,
     body: JSON.stringify(data),
   });
@@ -100,6 +101,7 @@ const login = async <T>(url: string, data: LoginData): Promise<T> => {
 const signUp = async <T>(url: string, data: LoginData): Promise<T> => {
   const response = await fetch(url, {
     method: 'POST',
+    credentials: 'include',
     headers,
     body: JSON.stringify(data),
   });
